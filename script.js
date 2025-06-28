@@ -1,7 +1,24 @@
 let currentRow = 0;
 let currentCol = 0;
 
-function drawGrid(container) \
+function resetGame()
+{
+  for (let row = 0; row <= 6; row++)
+  {
+    for (let col = 0; col < 5; col++)
+    {
+      const box = document.getElementById(`box${row}${col}`);
+      if (box)
+        box.textContent = '';
+    }
+  }
+  currentRow = 0;
+  currentCol = 0;
+  solution = get_word();
+  console.log("Wordsoluce :", solution);
+}
+
+function drawGrid(container)
 {
   const grid = document.createElement('div');
   grid.className = 'grid';
@@ -23,35 +40,16 @@ function drawGrid(container) \
 document.addEventListener('keydown', (event) => {
   const key = event.key;
 
+  if (currentRow >= 6)
+  {
+    alert("FIN DU JEU");
+    resetGame();
+  }
+
   if (/^[a-zA-Z]$/.test(key))
-  {
-    if (currentCol < 5)
-    {
-      const box = document.getElementById(`box${currentRow}${currentCol}`);
-      box.textContent = key.toUpperCase();
-      currentCol++;
-    }
-  }
+    letter(key)
   else if (key === 'Backspace')
-  {
-    if (currentCol > 0)
-    {
-      currentCol--;
-      const box = document.getElementById(`box${currentRow}${currentCol}`);
-      box.textContent = '';
-    }
-  }
+    backspace()
   else if (key === 'Enter')
-  {
-    if (currentCol === 5)
-      console.log('Valider mot');
-  }
+    enter()
 });
-
-function startup()
-{
-  const game = document.getElementById('game');
-  drawGrid(game);
-}
-
-startup();
