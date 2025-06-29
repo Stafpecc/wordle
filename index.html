@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<link rel="stylesheet" href="style.css" />
 	<meta charset="UTF-8">
 	<title>Wordle JS</title>
 	<style>
@@ -12,6 +13,7 @@
 			text-align: center;
 			margin-top: 50px;
 		}
+
 
 		h1 {
 			font-size: 2rem;
@@ -55,20 +57,15 @@
 				transform: scale(1);
 			}
 		}
-
 		.box.filled {
 			animation: pop 0.2s ease;
 		}
-
-
 		.correct {
 			background-color: #4caf50;
 		}
-
 		.present {
 			background-color: #ff9800;
 		}
-
 		.absent {
 			background-color: #9e9e9e;
 		}
@@ -79,17 +76,19 @@
 	<h1>Wordle en JS PAS DE YASL</h1>
 	<div id="game"></div>
 	<div id="message" style="height: 30px; margin-bottom: 10px; font-weight: bold; color: #00ffcc;"></div>
-	<div id="redOverlay"></div>
-	<div id="crack"></div>
+	<div id="crackOverlay"></div>
 	<div id="victoryText" style="display: none; font-size: 3rem; position: fixed; top: 90%; width: 100%; color: #00ffcc; text-shadow: 2px 2px #000; z-index: 9999;">VICTOIRE !</div>
 	<div id="fireworks-container"
 		style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none;"></div>
 
+	<div id="crack1" class="crack"></div>
+	<div id="crack3" class="crack"></div>
+	<div id="crack4" class="crack"></div>
+
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-	<script src="src/script.js"></script>
-	<script src="src/commands.js"></script>
+	<script src="script.js"></script>
+	<script src="commands.js"></script>
 	<script src="main.js"></script>
-	<script src="node_modules/fireworks-js/dist/index.umd.js"></script>
 </body>
 
 </html>

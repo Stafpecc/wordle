@@ -96,6 +96,9 @@ async function resetGame() {
   if (fireworks) {
     fireworks.stop();
   }
+  document.getElementById("crack1").style.opacity = 0
+  document.getElementById("crack3").style.opacity = 0
+  document.getElementById("crack4").style.opacity = 0
 
   const victoryText = document.getElementById('victoryText');
   if (victoryText) {
@@ -150,14 +153,10 @@ document.addEventListener('keydown', (event) => {
     const redOverlay = document.getElementById('redOverlay');
     const game = document.getElementById('game');
 
-    crack.style.opacity = 1;
-    redOverlay.style.backgroundColor = 'rgba(255,0,0,0.5)';
     game.classList.add('shake');
 
     isPaused = true;
     setTimeout(() => {
-      crack.style.opacity = 0;
-      redOverlay.style.backgroundColor = 'rgba(255,0,0,0)';
       game.classList.remove('shake');
       isPaused = false;
       resetGame();

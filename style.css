@@ -2,40 +2,70 @@
 .present { background-color: orange; color: white; }
 .absent  { background-color: grey;  color: white; }
 
-#crack {
-	position: fixed;
-	top: 0; left: 0;
-	width: 100vw; height: 100vh;
-	pointer-events: none;
-	background: url('https://i.imgur.com/qh7mCzT.png') center center no-repeat;
-	background-size: contain;
-	opacity: 0;
-	transition: opacity 0.5s ease;
-	z-index: 1000;
-  }
-  
-  #redOverlay {
-	position: fixed;
-	top: 0; left: 0;
-	width: 100vw; height: 100vh;
-	background: rgba(255,0,0,0);
-	pointer-events: none;
-	z-index: 900;
-	transition: background-color 1s ease;
-  }
-  
-  .shake {
-	animation: shake 0.5s infinite;
-  }
-  
-  @keyframes shake {
-	0%, 100% { transform: translate(0,0); }
-	20% { transform: translate(-5px, 5px); }
-	40% { transform: translate(5px, -5px); }
-	60% { transform: translate(-5px, -5px); }
-	80% { transform: translate(5px, 5px); }
-  }
-  
+@keyframes shake {
+  0% { transform: translateX(0); background-color: #200; }
+  25% { transform: translateX(-5px); background-color: #400; }
+  50% { transform: translateX(5px); background-color: #600; }
+  75% { transform: translateX(-5px); background-color: #400; }
+  100% { transform: translateX(0); background-color: #200; }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.crack {
+  position: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#crack1 {
+  top: 2vh;
+  right: 2vw;
+  width: 35vw;
+  height: 35vh;
+  background-image: url('glass1.png');
+}
+
+#crack2 {
+  top: 0;
+  left: -4vh; 
+  width: 42vw;   
+  height: 42vh;   
+  background-image: url('glass2.png');
+}
+
+#crack3 {
+  position: fixed;
+  top: 24vh;
+  left: 50vw;
+  width: 50vw;        /*fixed largeur réduite, ajustable */
+  height: 50vw;       /* hauteur identique à la largeur pour garder les proportions carrées */
+  background-image: url('glass3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(160deg);  /* rotation de 15 degrés */
+  transform-origin: top left; /* rotation autour du coin en haut à gauche */
+}
+
+
+
+
+#crack4 {
+  bottom: 0;
+  left: 36vh; 
+  width: 80vw;    
+  height: 80vh;  
+  background-image: url('glass4.png');
+}
+
 
 
   @keyframes fly {
