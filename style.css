@@ -1,0 +1,70 @@
+.correct { background-color: green; color: white; }
+.present { background-color: orange; color: white; }
+.absent  { background-color: grey;  color: white; }
+
+#crack {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100vw; height: 100vh;
+	pointer-events: none;
+	background: url('https://i.imgur.com/qh7mCzT.png') center center no-repeat;
+	background-size: contain;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+	z-index: 1000;
+  }
+  
+  #redOverlay {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100vw; height: 100vh;
+	background: rgba(255,0,0,0);
+	pointer-events: none;
+	z-index: 900;
+	transition: background-color 1s ease;
+  }
+  
+  .shake {
+	animation: shake 0.5s infinite;
+  }
+  
+  @keyframes shake {
+	0%, 100% { transform: translate(0,0); }
+	20% { transform: translate(-5px, 5px); }
+	40% { transform: translate(5px, -5px); }
+	60% { transform: translate(-5px, -5px); }
+	80% { transform: translate(5px, 5px); }
+  }
+  
+
+
+  @keyframes fly {
+	to {
+	  transform: translateY(-2000px) rotate(720deg);
+	  opacity: 0;
+	}
+  }
+  
+  .box.win {
+	animation: fly 1s ease forwards;
+  }
+
+  @keyframes flyAway {
+	0% {
+	  transform: scale(1) translateY(0);
+	  opacity: 1;
+	}
+	100% {
+	  transform: scale(2) translateY(-200px) rotate(720deg);
+	  opacity: 0;
+	}
+  }
+  
+  .box.win {
+	animation: flyAway 1s ease-out forwards;
+	z-index: 10;
+	position: relative; /* ← super important */
+	pointer-events: none;
+  }
+  
+  

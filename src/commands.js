@@ -1,27 +1,63 @@
+function colorizeGuess(guess, solution) {
+  const solutionLetters = solution.split('');
+  const guessLetters = guess.split('');
+  const rowBoxes = [];
 
-function enter()
-{
-  if (currentCol === 5)
+  for (let i = 0; i < 5; i++)
+    rowBoxes.push(document.getElementById(`box${currentRow}${i}`));
+
+  for (let i = 0; i < 5; i++)
+    {
+    if (guessLetters[i] === solutionLetters[i])
+    {
+      rowBoxes[i].classList.add('correct');
+      solutionLetters[i] = null;
+      guessLetters[i] = null;
+    }
+  }
+
+  for (let i = 0; i < 5; i++)
   {
-    let guess = '';
-
-    for (let i = 0; i < 5; i++)
+    if (guessLetters[i] !== null)
     {
-      const box = document.getElementById(`box${currentRow}${i}`);
-      guess += box.textContent.toLowerCase();
+      const index = solutionLetters.indexOf(guessLetters[i]);
+      if (index !== -1)
+      {
+        rowBoxes[i].classList.add('present');
+        solutionLetters[index] = null;
+      }
+      else
+        rowBoxes[i].classList.add('absent');
     }
+  }
+}
 
-    if (!is_valid(solution, guess))
-    {
-      alert("Mot invalide !");
-      currentCol = 0;
-      currentRow++;
-    }
-    else
-    {
-      alert("Mot valide !");
+function showMessage(text)
+{
+  const messageDiv = document.getElementById('message');
+  messageDiv.textContent = text;
+}
+
+function enter(guess) {
+  colorizeGuess(guess, solution);
+
+  if (!is_valid(solution, guess)) {
+    currentCol = 0;
+    currentRow++;
+  } else {
+    isPaused = true;
+    for (let i = 0; i < 5; i++) {
+  const box = document.getElementById(`box${currentRow}${i}`);
+}
+
+    launchConfetti();
+    launchFireworks();
+    showVictory();
+
+    setTimeout(() => {
+      isPaused = false;
       resetGame();
-    }    
+    }, 7000);
   }
 }
 
@@ -31,6 +67,9 @@ function letter(key)
   {
     const box = document.getElementById(`box${currentRow}${currentCol}`);
     box.textContent = key.toUpperCase();
+    box.classList.add('filled');
+    setTimeout(() => box.classList.remove('filled'), 200);
+
     currentCol++;
   }
 }
